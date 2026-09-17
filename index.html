@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Akshay R Bhat — Generative AI & Mobile Systems Engineer</title>
-  <meta name="description" content="Portfolio of Akshay R Bhat: Generative AI, Mobile Engineering (Kotlin, Jetpack Compose, React Native), and Intelligent Systems." />
+  <meta name="description" content="Official portfolio of Akshay R Bhat: Generative AI, Cascading Intent Engines, Android (Kotlin / Jetpack Compose), and Intelligent Mobile Systems." />
 
   <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,19 +27,24 @@
               cyan: '#06b6d4',
               purple: '#8b5cf6',
               emerald: '#10b981',
-              dark: '#070a12',
-              card: '#0e1424',
-              border: '#1e293b'
+              dark: '#050811',
+              card: '#0c1222',
+              cardborder: 'rgba(255, 255, 255, 0.08)'
             }
           },
           animation: {
-            'gradient-x': 'gradient-x 8s ease infinite',
-            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'gradient-spin': 'spin 12s linear infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
           },
           keyframes: {
-            'gradient-x': {
-              '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
-              '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.4' },
+              '50%': { opacity: '0.8' },
             }
           }
         }
@@ -51,33 +56,59 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    /* Custom subtle tech grid pattern */
-    .bg-grid-pattern {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-      background-size: 28px 28px;
+    /* Dynamic interactive spotlight */
+    #mouse-spotlight {
+      position: fixed;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.09) 0%, rgba(139, 92, 246, 0.04) 35%, transparent 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 0.3s ease;
     }
-    .glass-panel {
-      background: rgba(14, 20, 36, 0.7);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+
+    /* Subtle high-tech grid */
+    .bg-grid-tech {
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+
+    /* Glass Panels */
+    .glass-card {
+      background: rgba(12, 18, 34, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .glass-panel-glow:hover {
-      border-color: rgba(6, 182, 212, 0.4);
-      box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.15);
+    .glass-card:hover {
+      border-color: rgba(6, 182, 212, 0.35);
+      box-shadow: 0 12px 35px -10px rgba(6, 182, 212, 0.15);
+      transform: translateY(-2px);
     }
-    .glow-cyan {
-      box-shadow: 0 0 35px -5px rgba(6, 182, 212, 0.35);
+
+    /* Hologram border glow for photo */
+    .hologram-border {
+      background: linear-gradient(135deg, #06b6d4, #8b5cf6, #10b981, #06b6d4);
+      background-size: 300% 300%;
+      animation: gradientFlow 8s ease infinite;
     }
-    .glow-purple {
-      box-shadow: 0 0 35px -5px rgba(139, 92, 246, 0.35);
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
+
     /* Custom scrollbar */
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 7px;
     }
     ::-webkit-scrollbar-track {
-      background: #070a12;
+      background: #050811;
     }
     ::-webkit-scrollbar-thumb {
       background: #1e293b;
@@ -88,38 +119,43 @@
     }
   </style>
 </head>
-<body class="bg-brand-dark text-slate-100 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+<body class="bg-brand-dark text-slate-100 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200 relative overflow-x-hidden">
 
-  <!-- Ambient Glow Background Circles -->
+  <!-- Interactive Mouse Spotlight (Follows Cursor) -->
+  <div id="mouse-spotlight"></div>
+
+  <!-- Ambient Light Orbs -->
   <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-    <div class="absolute -top-40 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
-    <div class="absolute top-1/3 right-10 w-[30rem] h-[30rem] bg-purple-600/10 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-20 left-10 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl"></div>
-    <div class="absolute inset-0 bg-grid-pattern opacity-40"></div>
+    <div class="absolute -top-40 left-1/4 w-[32rem] h-[32rem] bg-cyan-500/10 rounded-full blur-[120px]"></div>
+    <div class="absolute top-1/3 -right-20 w-[36rem] h-[36rem] bg-purple-600/10 rounded-full blur-[140px]"></div>
+    <div class="absolute bottom-20 left-10 w-[28rem] h-[28rem] bg-emerald-500/10 rounded-full blur-[120px]"></div>
+    <div class="absolute inset-0 bg-grid-tech opacity-60"></div>
   </div>
 
   <!-- Top Toast Notification -->
   <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-    <div class="bg-slate-900 border border-cyan-500/40 text-cyan-200 px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-3">
+    <div class="bg-slate-900/95 border border-cyan-500/50 text-cyan-200 px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-3 backdrop-blur-md">
       <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400"></i>
-      <span id="toast-message" class="text-sm font-medium">Copied to clipboard!</span>
+      <span id="toast-message" class="text-sm font-semibold">Copied to clipboard!</span>
     </div>
   </div>
 
   <!-- Navigation Bar -->
-  <header class="sticky top-0 z-40 w-full glass-panel border-b border-slate-800/80 transition-all duration-300">
+  <header class="sticky top-0 z-40 w-full bg-brand-dark/80 backdrop-blur-xl border-b border-slate-800/80 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <!-- Logo / Identity -->
       <a href="#" class="flex items-center space-x-3 group">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center font-mono font-bold text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
-          AB
+        <div class="relative w-9 h-9 rounded-xl p-[1.5px] hologram-border">
+          <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center font-mono font-bold text-cyan-300 text-sm">
+            AB
+          </div>
         </div>
         <div class="flex flex-col">
           <span class="font-bold text-base tracking-tight text-white group-hover:text-cyan-400 transition-colors">
             Akshay R Bhat
           </span>
-          <span class="text-[10px] font-mono text-cyan-400/90 -mt-1 tracking-wider uppercase font-semibold">
-            AI & Mobile Systems
+          <span class="text-[10px] font-mono text-cyan-400 -mt-1 tracking-wider uppercase font-semibold">
+            Generative AI & Mobile
           </span>
         </div>
       </a>
@@ -128,172 +164,170 @@
       <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
         <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
         <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
-        <a href="#ai-assistant" class="hover:text-cyan-400 transition-colors flex items-center space-x-1.5">
+        <a href="#ai-terminal" class="hover:text-cyan-400 transition-colors flex items-center space-x-1.5">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
           </span>
-          <span>Ask AI</span>
+          <span>Ask AI Copilot</span>
         </a>
         <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
         <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
       </nav>
 
-      <!-- Right Action CTA -->
+      <!-- Right Action CTAs -->
       <div class="flex items-center space-x-3">
-        <a href="resume.html" target="_blank" class="flex items-center space-x-2 text-xs font-semibold px-3.5 py-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700 hover:border-slate-600 transition-all">
+        <a href="resume.html" target="_blank" class="flex items-center space-x-2 text-xs font-semibold px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 hover:border-cyan-500/50 transition-all">
           <i data-lucide="file-text" class="w-4 h-4 text-cyan-400"></i>
           <span class="hidden sm:inline">ATS Resume</span>
         </a>
-        <a href="#contact" class="flex items-center space-x-2 text-xs font-semibold px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-md shadow-cyan-500/20 transition-all">
-          <i data-lucide="send" class="w-3.5 h-3.5"></i>
+        <a href="#contact" class="flex items-center space-x-2 text-xs font-semibold px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white shadow-lg shadow-cyan-500/20 transition-all transform hover:scale-[1.02]">
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
           <span>Get in Touch</span>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section id="about" class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+  <!-- Hero Section with Real Photo & Futuristic Frame -->
+  <section id="about" class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <!-- Left Hero Content -->
         <div class="lg:col-span-7 space-y-6">
-          <!-- Availability Badge -->
-          <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full glass-panel border-cyan-500/30 text-xs font-medium text-cyan-300">
+          
+          <!-- Live Status Pill -->
+          <div class="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 text-xs font-medium text-cyan-300 shadow-md">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Open for AI & Mobile Engineering Opportunities</span>
+            <span>Open for AI & Mobile Engineering Roles (2026 Grad)</span>
           </div>
 
           <!-- Main Hero Headline -->
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-            Building the Next Era of 
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
+            Engineering the Next Wave of 
             <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 bg-clip-text text-transparent">
               Generative AI
             </span> 
             & Intelligent Mobile Systems.
           </h1>
 
-          <!-- Tagline / Bio -->
+          <!-- Bio -->
           <p class="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
-            I am <strong class="text-white font-semibold">Akshay R Bhat</strong> — a Computer Science Engineer specializing in 
-            <span class="text-cyan-400 font-medium">Multimodal Generative AI</span>, 
-            <span class="text-purple-400 font-medium">Cascading Intent Engines</span>, and 
-            <span class="text-emerald-400 font-medium">Android (Kotlin / Jetpack Compose)</span>. 
-            I engineer software that transforms human intent directly into autonomous digital execution.
+            I am <strong class="text-white font-semibold">Akshay R Bhat</strong> — a Computer Science Engineer and AI builder based in Karnataka, India. 
+            I architect autonomous systems that eliminate digital friction — bridging 
+            <span class="text-cyan-400 font-medium">Cascading Multimodal LLM Engines</span> with 
+            <span class="text-purple-400 font-medium">Native Android (Kotlin & Jetpack Compose)</span>.
           </p>
 
-          <!-- Action Buttons -->
+          <!-- Primary CTAs -->
           <div class="flex flex-wrap gap-4 pt-2">
-            <a href="#projects" class="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm shadow-xl shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5">
-              <span>View Flagship Projects</span>
+            <a href="#projects" class="inline-flex items-center space-x-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm shadow-xl shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5">
+              <span>Explore Flagship Work</span>
               <i data-lucide="arrow-down" class="w-4 h-4"></i>
             </a>
 
-            <a href="https://akshayrbhat-2004.github.io/do-app/" target="_blank" rel="noopener" class="inline-flex items-center space-x-2 px-6 py-3 rounded-xl glass-panel text-slate-200 hover:text-white hover:border-cyan-500/50 font-semibold text-sm transition-all transform hover:-translate-y-0.5">
+            <a href="https://akshayrbhat-2004.github.io/do-app/" target="_blank" rel="noopener" class="inline-flex items-center space-x-2 px-6 py-3.5 rounded-xl bg-slate-900/90 text-slate-200 hover:text-white border border-slate-700 hover:border-cyan-500/60 font-semibold text-sm transition-all transform hover:-translate-y-0.5">
               <i data-lucide="play" class="w-4 h-4 text-cyan-400"></i>
               <span>Launch Live DO App</span>
             </a>
 
-            <a href="resume.html" target="_blank" class="inline-flex items-center space-x-2 px-5 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-sm font-semibold transition-all">
-              <i data-lucide="download" class="w-4 h-4 text-purple-400"></i>
-              <span>Print / ATS PDF</span>
+            <a href="resume.html" target="_blank" class="inline-flex items-center space-x-2 px-5 py-3.5 rounded-xl bg-purple-950/40 hover:bg-purple-900/50 text-purple-300 hover:text-purple-200 border border-purple-500/40 text-sm font-semibold transition-all">
+              <i data-lucide="printer" class="w-4 h-4"></i>
+              <span>ATS Resume</span>
             </a>
           </div>
 
           <!-- Quick Contacts & Links Pill Row -->
           <div class="pt-4 flex flex-wrap items-center gap-3 text-xs text-slate-400">
-            <div class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800">
+            <div class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800">
               <i data-lucide="map-pin" class="w-3.5 h-3.5 text-cyan-400"></i>
               <span>Udupi, Karnataka, India</span>
             </div>
 
-            <button onclick="copyToClipboard('akshayrbhat25@gmail.com', 'Email copied!')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">
+            <button onclick="copyToClipboard('akshayrbhat25@gmail.com', 'Email copied!')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">
               <i data-lucide="mail" class="w-3.5 h-3.5 text-cyan-400"></i>
               <span>akshayrbhat25@gmail.com</span>
               <i data-lucide="copy" class="w-3 h-3 text-slate-500"></i>
             </button>
 
-            <button onclick="copyToClipboard('+917975607946', 'Phone copied!')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">
+            <button onclick="copyToClipboard('+917975607946', 'Phone copied!')" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">
               <i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-400"></i>
               <span>+91-7975607946</span>
               <i data-lucide="copy" class="w-3 h-3 text-slate-500"></i>
             </button>
 
-            <a href="https://github.com/AKSHAYRBHAT-2004" target="_blank" rel="noopener" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-purple-500/50 hover:text-purple-300 transition-colors">
+            <a href="https://github.com/AKSHAYRBHAT-2004" target="_blank" rel="noopener" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-purple-500/50 hover:text-purple-300 transition-colors">
               <i data-lucide="github" class="w-3.5 h-3.5 text-purple-400"></i>
               <span>GitHub</span>
             </a>
 
-            <a href="https://linkedin.com/in/akshay-r-Bhat" target="_blank" rel="noopener" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-blue-500/50 hover:text-blue-300 transition-colors">
+            <a href="https://linkedin.com/in/akshay-r-Bhat" target="_blank" rel="noopener" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-blue-500/50 hover:text-blue-300 transition-colors">
               <i data-lucide="linkedin" class="w-3.5 h-3.5 text-blue-400"></i>
               <span>LinkedIn</span>
             </a>
           </div>
+
         </div>
 
-        <!-- Right Hero Visual: Architectural High-Tech Bento Card -->
-        <div class="lg:col-span-5">
-          <div class="relative glass-panel rounded-2xl p-6 border border-slate-800 glow-cyan">
-            <div class="flex items-center justify-between pb-4 border-b border-slate-800/80">
-              <div class="flex items-center space-x-2">
-                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
-                <span class="text-xs font-mono text-slate-400 ml-2">akshay_core_engine.sys</span>
+        <!-- Right Hero Visual: Akshay's Real Portrait + High-Tech Bento Framing -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-md">
+            
+            <!-- Hologram Gradient Border Wrapper -->
+            <div class="relative p-[3px] rounded-3xl hologram-border shadow-2xl shadow-cyan-500/20 group">
+              <div class="bg-slate-950 rounded-[22px] overflow-hidden p-3 sm:p-4">
+                
+                <!-- Main Portrait Container -->
+                <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-slate-900">
+                  <!-- The Exact User Photo -->
+                  <img 
+                    src="profile.jpg" 
+                    alt="Akshay R Bhat — Generative AI & Mobile Systems Engineer" 
+                    class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  />
+
+                  <!-- Cyber Gradient Overlay (Gentle bottom contrast) -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+
+                  <!-- Floating Top Status Tag -->
+                  <div class="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full border border-cyan-500/40 flex items-center space-x-2 text-[11px] font-mono text-cyan-300 shadow-lg">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                    <span>AI Systems Engineer</span>
+                  </div>
+
+                  <!-- Floating Bottom Overlay Details -->
+                  <div class="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-slate-950/85 backdrop-blur-md border border-white/10 text-xs">
+                    <div class="flex items-center justify-between font-mono text-slate-300 mb-1">
+                      <span class="font-bold text-white text-sm">Akshay R Bhat</span>
+                      <span class="text-cyan-400 text-[10px]">SMVITM '26</span>
+                    </div>
+                    <div class="text-[11px] text-slate-400 flex items-center justify-between">
+                      <span>Generative AI • Android • React Native</span>
+                      <span class="text-emerald-400 font-mono font-semibold">Active</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Architectural Stats Below Photo -->
+                <div class="mt-4 grid grid-cols-3 gap-2 text-center font-mono">
+                  <div class="p-2 rounded-xl bg-slate-900/70 border border-slate-800">
+                    <div class="text-base font-bold text-cyan-400">&lt;5ms</div>
+                    <div class="text-[9px] text-slate-400 uppercase">Latency</div>
+                  </div>
+                  <div class="p-2 rounded-xl bg-slate-900/70 border border-slate-800">
+                    <div class="text-base font-bold text-purple-400">3-Tier</div>
+                    <div class="text-[9px] text-slate-400 uppercase">Cascade</div>
+                  </div>
+                  <div class="p-2 rounded-xl bg-slate-900/70 border border-slate-800">
+                    <div class="text-base font-bold text-emerald-400">Kotlin</div>
+                    <div class="text-[9px] text-slate-400 uppercase">Compose</div>
+                  </div>
+                </div>
+
               </div>
-              <span class="text-[11px] font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/50">ACTIVE</span>
             </div>
 
-            <!-- Architecture Pill Breakdown -->
-            <div class="mt-5 space-y-3 font-mono text-xs">
-              <div class="p-3 rounded-xl bg-slate-950/60 border border-cyan-500/30">
-                <div class="flex items-center justify-between text-cyan-300 mb-1">
-                  <span class="font-bold flex items-center gap-1.5">
-                    <i data-lucide="zap" class="w-3.5 h-3.5"></i> Tier 0: Regex Engine
-                  </span>
-                  <span class="text-[10px] text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded">&lt;5ms</span>
-                </div>
-                <p class="text-slate-400 text-[11px] font-sans">Instant single-word actions, shortcuts & local macros</p>
-              </div>
-
-              <div class="p-3 rounded-xl bg-slate-950/60 border border-purple-500/30">
-                <div class="flex items-center justify-between text-purple-300 mb-1">
-                  <span class="font-bold flex items-center gap-1.5">
-                    <i data-lucide="compass" class="w-3.5 h-3.5"></i> Tier 1: Semantic Routing
-                  </span>
-                  <span class="text-[10px] text-purple-400 bg-purple-950/80 px-2 py-0.5 rounded">&lt;30ms</span>
-                </div>
-                <p class="text-slate-400 text-[11px] font-sans">Keyword & embeddings context matching for rapid dispatch</p>
-              </div>
-
-              <div class="p-3 rounded-xl bg-slate-950/60 border border-emerald-500/30">
-                <div class="flex items-center justify-between text-emerald-300 mb-1">
-                  <span class="font-bold flex items-center gap-1.5">
-                    <i data-lucide="cpu" class="w-3.5 h-3.5"></i> Tier 2: LLM Synthesis
-                  </span>
-                  <span class="text-[10px] text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded">&lt;250ms</span>
-                </div>
-                <p class="text-slate-400 text-[11px] font-sans">Multimodal parsing, complex intention reasoning & task automation</p>
-              </div>
-            </div>
-
-            <!-- Stats Bar -->
-            <div class="mt-6 pt-4 border-t border-slate-800 grid grid-cols-3 gap-2 text-center">
-              <div>
-                <div class="text-lg font-bold text-white font-mono">3+</div>
-                <div class="text-[10px] text-slate-400 uppercase tracking-wider">AI Apps</div>
-              </div>
-              <div class="border-x border-slate-800">
-                <div class="text-lg font-bold text-cyan-400 font-mono">&lt;250ms</div>
-                <div class="text-[10px] text-slate-400 uppercase tracking-wider">Latency</div>
-              </div>
-              <div>
-                <div class="text-lg font-bold text-emerald-400 font-mono">2026</div>
-                <div class="text-[10px] text-slate-400 uppercase tracking-wider">B.E. CS</div>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -302,71 +336,71 @@
   </section>
 
   <!-- Interactive AI Assistant Terminal / Recruiter Copilot -->
-  <section id="ai-assistant" class="py-16 bg-slate-950/50 border-y border-slate-900">
+  <section id="ai-terminal" class="py-16 bg-slate-950/70 border-y border-slate-900/80 relative z-10">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-10">
-        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-mono font-medium mb-3">
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-mono font-medium mb-3">
           <i data-lucide="bot" class="w-3.5 h-3.5"></i>
-          <span>Interactive Portfolio Terminal</span>
+          <span>Live Interactive Recruiter Copilot</span>
         </div>
         <h2 class="text-3xl font-extrabold text-white tracking-tight">
-          Ask Akshay's AI Copilot
+          Query Akshay's Neural Profile
         </h2>
         <p class="text-sm text-slate-400 mt-2">
-          Click any prompt button below or type a query to test how Akshay's technical profile aligns with your team's needs.
+          Click any prompt button below to simulate an AI interview breakdown of Akshay's architecture and engineering depth.
         </p>
       </div>
 
       <!-- Terminal Container -->
-      <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
+      <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
         <!-- Terminal Header -->
         <div class="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
           <div class="flex items-center space-x-2">
             <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
             <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
             <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
-            <span class="text-xs font-mono text-slate-400 ml-2">akshay-ai-copilot v2.4 (Gemini-Enabled)</span>
+            <span class="text-xs font-mono text-slate-400 ml-2">akshay-ai-terminal v2.4</span>
           </div>
-          <span class="text-[11px] font-mono text-cyan-400 flex items-center gap-1">
-            <i data-lucide="wifi" class="w-3 h-3"></i> Ready
+          <span class="text-[11px] font-mono text-cyan-400 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+            <span>SYSTEM ONLINE</span>
           </span>
         </div>
 
         <!-- Terminal Body -->
         <div class="p-6 font-mono text-sm space-y-4 min-h-[260px] max-h-[380px] overflow-y-auto" id="terminal-screen">
           <div class="text-slate-400 text-xs">
-            [System initialized]: Knowledge base indexed with Akshay R Bhat's projects, Android / GenAI stack, and experience.
+            [SYS_OK]: Context vector database loaded for Akshay R Bhat (DO App, AksharaDeepaTutor, AI Code Reviewer, MindMatrix.io).
           </div>
           
-          <!-- Sample Dialogue -->
           <div class="flex items-start space-x-2 text-cyan-400">
             <span class="text-slate-500 select-none">&gt;</span>
-            <span class="font-semibold text-slate-200">Welcome! Ask about Akshay's projects, AI architecture, or internship details:</span>
+            <span class="font-semibold text-slate-200">Terminal Ready. Select a query below to execute:</span>
           </div>
 
-          <div id="ai-response-area" class="text-slate-300 leading-relaxed text-xs sm:text-sm pl-4 border-l-2 border-cyan-500/50 bg-slate-900/40 p-3 rounded-r-lg font-sans">
-            👋 <strong>Hi Recruiter / Engineer!</strong> I am Akshay's AI portfolio agent. Click one of the quick prompts below to see deep technical summaries of his work on <em>DO — AI Life Operating System</em>, <em>AksharaDeepaTutor</em>, or his Android Generative AI work at <em>MindMatrix.io</em>!
+          <div id="ai-response-area" class="text-slate-300 leading-relaxed text-xs sm:text-sm pl-4 border-l-2 border-cyan-500/60 bg-slate-900/60 p-4 rounded-r-xl font-sans">
+            👋 <strong>Welcome!</strong> I am Akshay's interactive portfolio agent. Tap any question below to see his technical architecture breakdowns, metric achievements, and deep code context!
           </div>
         </div>
 
         <!-- Quick Prompts Buttons -->
-        <div class="bg-slate-900/70 p-4 border-t border-slate-800">
+        <div class="bg-slate-900/80 p-4 border-t border-slate-800">
           <div class="text-xs text-slate-400 mb-2 font-mono flex items-center gap-1.5">
-            <i data-lucide="sparkles" class="w-3 h-3 text-cyan-400"></i> Click a prompt to execute:
+            <i data-lucide="sparkles" class="w-3 h-3 text-cyan-400"></i> Click a prompt:
           </div>
           <div class="flex flex-wrap gap-2">
-            <button onclick="runAiQuery('do-architecture')" class="px-3 py-1.5 text-xs rounded-lg bg-slate-800 hover:bg-cyan-950/80 text-cyan-300 border border-slate-700 hover:border-cyan-500/50 transition-all text-left">
+            <button onclick="runAiQuery('do-architecture')" class="px-3 py-2 text-xs rounded-xl bg-slate-800 hover:bg-cyan-950/80 text-cyan-300 border border-slate-700 hover:border-cyan-500/50 transition-all text-left">
               ⚡ How does DO's 3-Tier Intent Engine work?
             </button>
-            <button onclick="runAiQuery('aksharadeepa')" class="px-3 py-1.5 text-xs rounded-lg bg-slate-800 hover:bg-purple-950/80 text-purple-300 border border-slate-700 hover:border-purple-500/50 transition-all text-left">
+            <button onclick="runAiQuery('aksharadeepa')" class="px-3 py-2 text-xs rounded-xl bg-slate-800 hover:bg-purple-950/80 text-purple-300 border border-slate-700 hover:border-purple-500/50 transition-all text-left">
               📱 Explain AksharaDeepaTutor (Kotlin & TTS)
             </button>
-            <button onclick="runAiQuery('internship')" class="px-3 py-1.5 text-xs rounded-lg bg-slate-800 hover:bg-emerald-950/80 text-emerald-300 border border-slate-700 hover:border-emerald-500/50 transition-all text-left">
+            <button onclick="runAiQuery('internship')" class="px-3 py-2 text-xs rounded-xl bg-slate-800 hover:bg-emerald-950/80 text-emerald-300 border border-slate-700 hover:border-emerald-500/50 transition-all text-left">
               💼 What did he achieve at MindMatrix.io?
             </button>
-            <button onclick="runAiQuery('stack')" class="px-3 py-1.5 text-xs rounded-lg bg-slate-800 hover:bg-amber-950/80 text-amber-300 border border-slate-700 hover:border-amber-500/50 transition-all text-left">
-              🛠️ List Akshay's complete Tech Stack
+            <button onclick="runAiQuery('stack')" class="px-3 py-2 text-xs rounded-xl bg-slate-800 hover:bg-amber-950/80 text-amber-300 border border-slate-700 hover:border-amber-500/50 transition-all text-left">
+              🛠️ View Complete Tech Stack
             </button>
           </div>
         </div>
@@ -375,28 +409,41 @@
     </div>
   </section>
 
-  <!-- Featured Projects Section -->
-  <section id="projects" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+  <!-- Featured Projects Section with Interactive Tabs -->
+  <section id="projects" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
       <div>
-        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/40 text-purple-300 text-xs font-mono font-medium mb-3">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-purple-950/70 border border-purple-500/40 text-purple-300 text-xs font-mono font-medium mb-3">
           <i data-lucide="layers" class="w-3.5 h-3.5"></i>
-          <span>Production & Research Projects</span>
+          <span>Engineering Portfolio</span>
         </div>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Featured Engineering Work
+          Featured Systems & Applications
         </h2>
       </div>
-      <p class="text-slate-400 text-sm max-w-md mt-4 md:mt-0">
-        Hands-on systems integrating cutting-edge LLMs, low-latency intent routing, and production Android / Web architectures.
-      </p>
+
+      <!-- Project Category Filter Pills -->
+      <div class="mt-6 md:mt-0 flex flex-wrap gap-2">
+        <button onclick="filterProjects('all')" id="btn-filter-all" class="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20 transition-all">
+          All Projects
+        </button>
+        <button onclick="filterProjects('genai')" id="btn-filter-genai" class="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-slate-900 text-slate-300 border border-slate-800 hover:border-cyan-500/40 transition-all">
+          Generative AI
+        </button>
+        <button onclick="filterProjects('mobile')" id="btn-filter-mobile" class="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-slate-900 text-slate-300 border border-slate-800 hover:border-purple-500/40 transition-all">
+          Android / Mobile
+        </button>
+        <button onclick="filterProjects('fullstack')" id="btn-filter-fullstack" class="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-slate-900 text-slate-300 border border-slate-800 hover:border-emerald-500/40 transition-all">
+          Full Stack
+        </button>
+      </div>
     </div>
 
     <!-- Projects Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-      <!-- HERO PROJECT 1: DO — AI Life Operating System (Spans 12 cols on large screen) -->
-      <div class="lg:col-span-12 glass-panel rounded-3xl p-8 lg:p-10 border border-cyan-500/30 glass-panel-glow relative overflow-hidden group">
+      <!-- HERO PROJECT 1: DO — AI Life Operating System -->
+      <div class="lg:col-span-12 glass-card rounded-3xl p-8 lg:p-10 border border-cyan-500/30 relative overflow-hidden group project-card" data-category="genai mobile">
         <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -405,10 +452,10 @@
             <div class="flex flex-wrap items-center gap-2.5">
               <span class="px-3 py-1 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-500/50 text-xs font-mono font-semibold flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                Flagship Generative AI
+                Flagship Project • Generative AI
               </span>
               <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 text-xs font-mono">2026</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-emerald-950/60 text-emerald-300 border border-emerald-800/50 text-xs font-mono">Live on GitHub Pages</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-emerald-950/60 text-emerald-300 border border-emerald-800/50 text-xs font-mono">Live Demo</span>
             </div>
 
             <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-cyan-300 transition-colors">
@@ -420,11 +467,12 @@
             </blockquote>
 
             <p class="text-slate-300 text-sm leading-relaxed">
-              A personal AI Life Operator engineered to eliminate friction between human intent and automated execution. Instead of jumping between 10 different apps, DO classifies intent across a 3-tier cascade and carries out complex workflows seamlessly.
+              A personal AI Life Operator engineered to eliminate the gap between human thought and digital execution. 
+              Instead of switching across separate travel, reminder, shopping, and notes apps, DO uses a multi-tiered routing cascade to parse intent and execute tasks instantly.
             </p>
 
-            <!-- Feature Badges -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2 text-xs">
+            <!-- Feature Pills -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1 text-xs">
               <div class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center space-x-2">
                 <i data-lucide="camera" class="w-4 h-4 text-cyan-400 flex-shrink-0"></i>
                 <span class="text-slate-200">Snap &rarr; Solve</span>
@@ -451,7 +499,7 @@
               </div>
             </div>
 
-            <!-- Tech Tags -->
+            <!-- Tech Badges -->
             <div class="pt-2 flex flex-wrap gap-1.5 font-mono text-xs">
               <span class="px-2.5 py-1 rounded bg-slate-800 text-cyan-300">React Native</span>
               <span class="px-2.5 py-1 rounded bg-slate-800 text-cyan-300">Expo</span>
@@ -463,7 +511,7 @@
             <!-- Action CTAs -->
             <div class="pt-4 flex flex-wrap items-center gap-3">
               <a href="https://akshayrbhat-2004.github.io/do-app/" target="_blank" rel="noopener" class="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-xs shadow-lg shadow-cyan-500/20 transition-all">
-                <span>Try Live App Demos</span>
+                <span>Launch Live App Demo</span>
                 <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
               </a>
 
@@ -475,13 +523,13 @@
           </div>
 
           <!-- Right Side: Architecture Deep-Dive Graphic -->
-          <div class="lg:col-span-5 bg-slate-950/70 border border-slate-800 rounded-2xl p-6 font-mono text-xs">
+          <div class="lg:col-span-5 bg-slate-950/80 border border-slate-800 rounded-2xl p-6 font-mono text-xs shadow-inner">
             <div class="flex items-center justify-between pb-3 border-b border-slate-800 text-slate-400">
               <span class="font-bold text-white flex items-center gap-1.5">
                 <i data-lucide="git-branch" class="w-4 h-4 text-cyan-400"></i>
-                3-Tier Intent Pipeline
+                Cascading Intent Engine
               </span>
-              <span class="text-[10px] text-cyan-400">Architecture</span>
+              <span class="text-[10px] text-cyan-400 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800/40">CORE SYS</span>
             </div>
 
             <div class="mt-4 space-y-4">
@@ -489,8 +537,8 @@
               <div class="relative pl-6 border-l-2 border-cyan-500">
                 <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-cyan-500 flex items-center justify-center text-[10px] font-bold text-slate-950">0</span>
                 <div class="font-bold text-cyan-300">Tier 0: Deterministic Shortcuts</div>
-                <div class="text-[11px] text-slate-400 font-sans mt-0.5">Regex pattern matching for single-word queries, timer settings, and local commands.</div>
-                <div class="text-[10px] text-cyan-400 mt-1 font-mono">Latency: &lt;5 ms (Zero network cost)</div>
+                <div class="text-[11px] text-slate-400 font-sans mt-0.5">Regex pattern matching for single-word queries, timers, and local device macros.</div>
+                <div class="text-[10px] text-cyan-400 mt-1 font-mono">&bull; Latency: &lt;5 ms (Zero Cloud Cost)</div>
               </div>
 
               <!-- Tier 1 -->
@@ -498,20 +546,20 @@
                 <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-purple-500 flex items-center justify-center text-[10px] font-bold text-slate-950">1</span>
                 <div class="font-bold text-purple-300">Tier 1: Semantic Intent Routing</div>
                 <div class="text-[11px] text-slate-400 font-sans mt-0.5">Vector keyword mapping to trigger specific micro-services (Finance, Food, Travel).</div>
-                <div class="text-[10px] text-purple-400 mt-1 font-mono">Latency: &lt;30 ms (Cached models)</div>
+                <div class="text-[10px] text-purple-400 mt-1 font-mono">&bull; Latency: &lt;30 ms (Cached Models)</div>
               </div>
 
               <!-- Tier 2 -->
               <div class="relative pl-6 border-l-2 border-emerald-500">
                 <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center text-[10px] font-bold text-slate-950">2</span>
                 <div class="font-bold text-emerald-300">Tier 2: LLM Structured Reasoning</div>
-                <div class="text-[11px] text-slate-400 font-sans mt-0.5">Full multimodal LLM call for OCR, complex intent analysis, and personalized task synthesis.</div>
-                <div class="text-[10px] text-emerald-400 mt-1 font-mono">Latency: &lt;250 ms (Structured JSON)</div>
+                <div class="text-[11px] text-slate-400 font-sans mt-0.5">Multimodal LLM call for document OCR, bill comprehension, and complex intention execution.</div>
+                <div class="text-[10px] text-emerald-400 mt-1 font-mono">&bull; Latency: &lt;250 ms (Structured JSON)</div>
               </div>
             </div>
 
             <div class="mt-5 p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] text-slate-300 font-sans">
-              💡 <strong>Key Innovation:</strong> Tier cascading prevents costly LLM calls for 80% of repetitive daily tasks, drastically reducing battery and compute overhead on mobile devices.
+              💡 <strong>System Impact:</strong> Cascading bypasses heavy LLM calls for ~80% of repetitive daily commands, conserving mobile battery life and compute overhead.
             </div>
           </div>
 
@@ -519,12 +567,12 @@
       </div>
 
       <!-- PROJECT 2: AksharaDeepaTutor (Android / EdTech AI) -->
-      <div class="lg:col-span-6 glass-panel rounded-3xl p-7 border border-slate-800 glass-panel-glow flex flex-col justify-between group">
+      <div class="lg:col-span-6 glass-card rounded-3xl p-7 border border-slate-800 flex flex-col justify-between group project-card" data-category="mobile genai">
         <div>
           <div class="flex items-center justify-between mb-4">
             <span class="px-3 py-1 rounded-full bg-purple-950/70 text-purple-300 border border-purple-500/40 text-xs font-mono font-semibold flex items-center gap-1.5">
               <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
-              Android Educational AI
+              Android Educational App
             </span>
             <span class="text-xs font-mono text-slate-400">2026</span>
           </div>
@@ -532,10 +580,10 @@
           <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">
             AksharaDeepaTutor
           </h3>
-          <p class="text-xs text-purple-400 font-mono mt-1 mb-3">Language Learning & Phonetic Assist System</p>
+          <p class="text-xs text-purple-400 font-mono mt-1 mb-3">Interactive Language Learning & Phonetics System</p>
 
           <p class="text-slate-300 text-sm leading-relaxed mb-5">
-            An Android application engineered to help children and beginner learners master fundamental language skills, phonics, and pronunciation through interactive exercises and auditory feedback.
+            An Android application engineered to help children and beginner learners master foundational language skills, phonics, and pronunciation through interactive exercises and auditory feedback.
           </p>
 
           <div class="space-y-2 mb-6">
@@ -573,7 +621,7 @@
       </div>
 
       <!-- PROJECT 3: AI Code Reviewer (MERN + Gemini API) -->
-      <div class="lg:col-span-6 glass-panel rounded-3xl p-7 border border-slate-800 glass-panel-glow flex flex-col justify-between group">
+      <div class="lg:col-span-6 glass-card rounded-3xl p-7 border border-slate-800 flex flex-col justify-between group project-card" data-category="fullstack genai">
         <div>
           <div class="flex items-center justify-between mb-4">
             <span class="px-3 py-1 rounded-full bg-emerald-950/70 text-emerald-300 border border-emerald-500/40 text-xs font-mono font-semibold flex items-center gap-1.5">
@@ -630,7 +678,7 @@
   </section>
 
   <!-- Work Experience Timeline Section -->
-  <section id="experience" class="py-20 bg-slate-950/40 border-t border-slate-900">
+  <section id="experience" class="py-20 bg-slate-950/40 border-t border-slate-900 z-10 relative">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-14">
@@ -644,7 +692,7 @@
       </div>
 
       <!-- Experience Card -->
-      <div class="glass-panel rounded-3xl p-8 border border-slate-800 relative">
+      <div class="glass-card rounded-3xl p-8 border border-slate-800 relative">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-800/80">
           <div>
             <div class="flex items-center space-x-3">
@@ -657,7 +705,7 @@
               Android App Development Intern – Generative AI
             </div>
           </div>
-          <div class="flex items-center space-x-2 text-xs font-mono text-slate-400 bg-slate-900/90 px-3.5 py-1.5 rounded-lg border border-slate-800">
+          <div class="flex items-center space-x-2 text-xs font-mono text-slate-400 bg-slate-900/90 px-3.5 py-1.5 rounded-xl border border-slate-800">
             <i data-lucide="calendar" class="w-3.5 h-3.5 text-cyan-400"></i>
             <span>Feb 2026 – May 2026</span>
             <span class="text-slate-600">•</span>
@@ -698,7 +746,7 @@
   </section>
 
   <!-- Technical Skills Matrix -->
-  <section id="skills" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="skills" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
     <div class="text-center max-w-2xl mx-auto mb-16">
       <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-medium mb-3">
         <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
@@ -715,7 +763,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
       <!-- Group 1: Generative AI & Machine Learning -->
-      <div class="glass-panel rounded-2xl p-6 border border-slate-800 hover:border-cyan-500/40 transition-colors">
+      <div class="glass-card rounded-2xl p-6 border border-slate-800">
         <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-4">
           <i data-lucide="sparkles" class="w-5 h-5"></i>
         </div>
@@ -732,7 +780,7 @@
       </div>
 
       <!-- Group 2: Mobile & Android Architecture -->
-      <div class="glass-panel rounded-2xl p-6 border border-slate-800 hover:border-purple-500/40 transition-colors">
+      <div class="glass-card rounded-2xl p-6 border border-slate-800">
         <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-4">
           <i data-lucide="smartphone" class="w-5 h-5"></i>
         </div>
@@ -750,7 +798,7 @@
       </div>
 
       <!-- Group 3: Core Programming Languages -->
-      <div class="glass-panel rounded-2xl p-6 border border-slate-800 hover:border-emerald-500/40 transition-colors">
+      <div class="glass-card rounded-2xl p-6 border border-slate-800">
         <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4">
           <i data-lucide="code-2" class="w-5 h-5"></i>
         </div>
@@ -768,7 +816,7 @@
       </div>
 
       <!-- Group 4: Web & Backend -->
-      <div class="glass-panel rounded-2xl p-6 border border-slate-800 hover:border-blue-500/40 transition-colors">
+      <div class="glass-card rounded-2xl p-6 border border-slate-800">
         <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-4">
           <i data-lucide="server" class="w-5 h-5"></i>
         </div>
@@ -786,7 +834,7 @@
       </div>
 
       <!-- Group 5: Developer Tools & Workflows -->
-      <div class="glass-panel rounded-2xl p-6 border border-slate-800 hover:border-amber-500/40 transition-colors">
+      <div class="glass-card rounded-2xl p-6 border border-slate-800">
         <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-4">
           <i data-lucide="wrench" class="w-5 h-5"></i>
         </div>
@@ -803,7 +851,7 @@
       </div>
 
       <!-- Group 6: Engineering Mindset & Soft Skills -->
-      <div class="glass-panel rounded-2xl p-6 border border-slate-800 hover:border-rose-500/40 transition-colors">
+      <div class="glass-card rounded-2xl p-6 border border-slate-800">
         <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400 mb-4">
           <i data-lucide="shield-check" class="w-5 h-5"></i>
         </div>
@@ -823,7 +871,7 @@
   </section>
 
   <!-- Education & Certifications Section -->
-  <section class="py-20 bg-slate-950/40 border-t border-slate-900">
+  <section class="py-20 bg-slate-950/40 border-t border-slate-900 z-10 relative">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
@@ -835,7 +883,7 @@
           </div>
           <h2 class="text-2xl sm:text-3xl font-bold text-white">Education</h2>
 
-          <div class="glass-panel rounded-2xl p-6 border border-slate-800">
+          <div class="glass-card rounded-2xl p-6 border border-slate-800">
             <div class="text-xs font-mono text-cyan-400 mb-1">Oct 2022 – May 2026</div>
             <h3 class="text-lg font-bold text-white">Bachelor of Engineering in Computer Science</h3>
             <p class="text-slate-300 text-sm mt-1">Shri Madhwa Vadiraja Institute of Technology and Management</p>
@@ -843,7 +891,7 @@
 
             <div class="mt-4 pt-4 border-t border-slate-800/80 text-xs text-slate-300 space-y-1">
               <p>• Rigorous focus on Data Structures & Algorithms, Operating Systems, Database Systems, and Object-Oriented Software Engineering.</p>
-              <p>• Hands-on project coursework in Android mobile architectures, Generative AI models, and full-stack systems.</p>
+              <p>• Hands-on coursework in Android mobile architectures, Generative AI models, and full-stack systems.</p>
             </div>
           </div>
         </div>
@@ -857,7 +905,7 @@
           <h2 class="text-2xl sm:text-3xl font-bold text-white">Certifications & Training</h2>
 
           <div class="space-y-4">
-            <div class="glass-panel rounded-xl p-4 border border-slate-800 flex items-start space-x-4">
+            <div class="glass-card rounded-xl p-4 border border-slate-800 flex items-start space-x-4">
               <div class="p-2.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 flex-shrink-0">
                 <i data-lucide="sparkles" class="w-5 h-5"></i>
               </div>
@@ -867,7 +915,7 @@
               </div>
             </div>
 
-            <div class="glass-panel rounded-xl p-4 border border-slate-800 flex items-start space-x-4">
+            <div class="glass-card rounded-xl p-4 border border-slate-800 flex items-start space-x-4">
               <div class="p-2.5 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/30 flex-shrink-0">
                 <i data-lucide="code" class="w-5 h-5"></i>
               </div>
@@ -877,7 +925,7 @@
               </div>
             </div>
 
-            <div class="glass-panel rounded-xl p-4 border border-slate-800 flex items-start space-x-4">
+            <div class="glass-card rounded-xl p-4 border border-slate-800 flex items-start space-x-4">
               <div class="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex-shrink-0">
                 <i data-lucide="check-circle" class="w-5 h-5"></i>
               </div>
@@ -894,13 +942,13 @@
     </div>
   </section>
 
-  <!-- Contact & CTA Section -->
-  <section id="contact" class="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-cyan-500/30 glow-purple relative overflow-hidden text-center">
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
+    <div class="glass-card rounded-3xl p-8 sm:p-12 border border-cyan-500/30 relative overflow-hidden text-center">
       <div class="max-w-2xl mx-auto space-y-6">
         <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800/60 text-xs font-mono">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>Let's Build Something Impactful</span>
+          <span>Let's Build Something High-Impact</span>
         </div>
 
         <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
@@ -940,22 +988,22 @@
 
         <!-- Social & Action Links -->
         <div class="pt-6 flex flex-wrap justify-center items-center gap-4">
-          <a href="mailto:akshayrbhat25@gmail.com" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-xs shadow-lg shadow-cyan-500/20 transition-all flex items-center space-x-2">
+          <a href="mailto:akshayrbhat25@gmail.com" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-semibold text-xs shadow-lg shadow-cyan-500/20 transition-all flex items-center space-x-2">
             <i data-lucide="send" class="w-4 h-4"></i>
-            <span>Send Direct Message</span>
+            <span>Send Direct Email</span>
           </a>
 
-          <a href="resume.html" target="_blank" class="px-6 py-3 rounded-xl glass-panel text-slate-200 hover:text-white hover:border-cyan-500/50 font-semibold text-xs transition-all flex items-center space-x-2">
+          <a href="resume.html" target="_blank" class="px-6 py-3 rounded-xl bg-slate-900 text-slate-200 hover:text-white hover:border-cyan-500/50 font-semibold text-xs border border-slate-700 transition-all flex items-center space-x-2">
             <i data-lucide="file-text" class="w-4 h-4 text-cyan-400"></i>
-            <span>View ATS Resume Form</span>
+            <span>View ATS Resume</span>
           </a>
 
-          <a href="https://linkedin.com/in/akshay-r-Bhat" target="_blank" rel="noopener" class="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs font-semibold transition-all flex items-center space-x-2">
+          <a href="https://linkedin.com/in/akshay-r-Bhat" target="_blank" rel="noopener" class="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 text-xs font-semibold transition-all flex items-center space-x-2">
             <i data-lucide="linkedin" class="w-4 h-4 text-blue-400"></i>
             <span>LinkedIn</span>
           </a>
 
-          <a href="https://github.com/AKSHAYRBHAT-2004" target="_blank" rel="noopener" class="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs font-semibold transition-all flex items-center space-x-2">
+          <a href="https://github.com/AKSHAYRBHAT-2004" target="_blank" rel="noopener" class="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 text-xs font-semibold transition-all flex items-center space-x-2">
             <i data-lucide="github" class="w-4 h-4 text-purple-400"></i>
             <span>GitHub</span>
           </a>
@@ -965,14 +1013,14 @@
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-900 py-10 text-center text-xs text-slate-500">
+  <footer class="border-t border-slate-900 py-10 text-center text-xs text-slate-500 z-10 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-2">
       <div class="flex items-center justify-center space-x-2">
         <span>Designed & Engineered by <strong>Akshay R Bhat</strong></span>
         <span>•</span>
         <span class="text-cyan-400 font-mono">B.E. Computer Science (2026)</span>
       </div>
-      <p>Powered by Modern Clean Architecture, Cascading Intent Routing & Generative AI.</p>
+      <p>Powered by Clean Architecture, Cascading Intent Routing & Generative AI.</p>
     </div>
   </footer>
 
@@ -980,6 +1028,15 @@
   <script>
     // Initialize Lucide Icons
     lucide.createIcons();
+
+    // Mouse Spotlight Follower
+    const spotlight = document.getElementById('mouse-spotlight');
+    window.addEventListener('mousemove', (e) => {
+      if (spotlight) {
+        spotlight.style.left = `${e.clientX}px`;
+        spotlight.style.top = `${e.clientY}px`;
+      }
+    });
 
     // Copy to Clipboard Utility
     function copyToClipboard(text, customMessage = "Copied to clipboard!") {
@@ -993,6 +1050,39 @@
           toast.classList.add('translate-y-20', 'opacity-0');
           toast.classList.remove('translate-y-0', 'opacity-100');
         }, 2200);
+      });
+    }
+
+    // Filter Projects
+    function filterProjects(category) {
+      const cards = document.querySelectorAll('.project-card');
+      const buttons = {
+        'all': document.getElementById('btn-filter-all'),
+        'genai': document.getElementById('btn-filter-genai'),
+        'mobile': document.getElementById('btn-filter-mobile'),
+        'fullstack': document.getElementById('btn-filter-fullstack')
+      };
+
+      // Reset all buttons
+      Object.values(buttons).forEach(btn => {
+        if (btn) {
+          btn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-slate-900 text-slate-300 border border-slate-800 hover:border-cyan-500/40 transition-all';
+        }
+      });
+
+      // Highlight active button
+      if (buttons[category]) {
+        buttons[category].className = 'px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20 transition-all';
+      }
+
+      // Filter cards
+      cards.forEach(card => {
+        const cardCats = card.getAttribute('data-category') || '';
+        if (category === 'all' || cardCats.includes(category)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
       });
     }
 
@@ -1038,7 +1128,7 @@
           responseArea.innerHTML = aiAnswers[key];
         }
         screen.scrollTop = screen.scrollHeight;
-      }, 350);
+      }, 300);
     }
   </script>
 </body>
