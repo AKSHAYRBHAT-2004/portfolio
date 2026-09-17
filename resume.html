@@ -30,8 +30,8 @@
       font-family: 'Latin Modern Roman', 'Computer Modern', 'Times New Roman', Times, serif;
       color: var(--text-color);
       background-color: #f1f5f9;
-      line-height: 1.32;
-      font-size: 10.5pt;
+      line-height: 1.28;
+      font-size: 10pt;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -105,7 +105,7 @@
       min-height: 11in;
       margin: 20px auto;
       background: #ffffff;
-      padding: 0.48in 0.55in;
+      padding: 0.42in 0.52in;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       box-sizing: border-box;
     }
@@ -113,20 +113,20 @@
     /* Header */
     header {
       text-align: center;
-      margin-bottom: 9px;
+      margin-bottom: 8px;
     }
     h1.name {
-      font-size: 24pt;
+      font-size: 23pt;
       font-weight: normal;
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
       color: #000000;
     }
     .contact-row {
-      font-size: 9.5pt;
+      font-size: 9.3pt;
       color: #000000;
-      margin-bottom: 2px;
+      margin-bottom: 1px;
     }
     .contact-row a {
       color: var(--link-blue);
@@ -136,29 +136,29 @@
       text-decoration: underline;
     }
     .location-row {
-      font-size: 9.5pt;
+      font-size: 9.3pt;
       color: #000000;
     }
 
     /* Section Headings */
     .section-title {
-      font-size: 11pt;
+      font-size: 10.8pt;
       font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 0.8px;
       color: #000000;
-      margin-top: 8px;
+      margin-top: 7px;
       margin-bottom: 2px;
     }
     .section-line {
       border: none;
       border-top: 0.9px solid #000000;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
 
-    /* Content Row Layouts (Flexbox for tight right-aligned dates) */
+    /* Content Row Layouts */
     .entry {
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .entry:last-child {
       margin-bottom: 0;
@@ -168,7 +168,7 @@
       justify-content: space-between;
       align-items: baseline;
       width: 100%;
-      font-size: 10.2pt;
+      font-size: 10pt;
     }
     .bold-title {
       font-weight: bold;
@@ -179,25 +179,25 @@
       color: #000000;
     }
     .regular-meta {
-      font-size: 9.8pt;
+      font-size: 9.5pt;
       color: #000000;
       text-align: right;
       white-space: nowrap;
     }
     .italic-meta {
-      font-size: 9.8pt;
+      font-size: 9.5pt;
       font-style: italic;
       color: #000000;
       text-align: right;
       white-space: nowrap;
     }
 
-    /* Clickable Project Link with subtle blue underline */
+    /* Clickable Project Link with blue underline */
     .project-link {
       color: var(--link-blue);
       text-decoration: underline;
       text-decoration-color: #0b5394;
-      text-underline-offset: 2.5px;
+      text-underline-offset: 2px;
       font-weight: bold;
       cursor: pointer;
       transition: color 0.15s ease;
@@ -215,14 +215,14 @@
     /* Bullet Lists */
     ul {
       list-style-type: disc;
-      margin-left: 17px;
-      margin-top: 2px;
-      margin-bottom: 3px;
+      margin-left: 16px;
+      margin-top: 1.5px;
+      margin-bottom: 2px;
     }
     li {
-      font-size: 9.6pt;
-      line-height: 1.30;
-      margin-bottom: 1.5px;
+      font-size: 9.4pt;
+      line-height: 1.26;
+      margin-bottom: 1.2px;
       color: #000000;
       text-align: justify;
     }
@@ -232,8 +232,8 @@
 
     /* Technical Skills Section */
     .skills-block {
-      font-size: 9.6pt;
-      line-height: 1.34;
+      font-size: 9.3pt;
+      line-height: 1.30;
     }
     .skill-category {
       font-weight: bold;
@@ -243,12 +243,12 @@
     /* Certifications Section */
     .cert-list {
       list-style-type: disc;
-      margin-left: 17px;
-      margin-top: 2px;
+      margin-left: 16px;
+      margin-top: 1.5px;
     }
     .cert-list li {
-      font-size: 9.6pt;
-      margin-bottom: 1.5px;
+      font-size: 9.3pt;
+      margin-bottom: 1.2px;
     }
 
     /* Print Styles: Exact Single Page Fit (Zero Margin Waste) */
@@ -257,7 +257,7 @@
         background: #ffffff !important;
         margin: 0 !important;
         padding: 0 !important;
-        font-size: 10pt !important;
+        font-size: 9.8pt !important;
       }
       .no-print-bar {
         display: none !important;
@@ -267,10 +267,10 @@
         min-height: 100% !important;
         box-shadow: none !important;
         margin: 0 !important;
-        padding: 0.35in 0.45in !important;
+        padding: 0.32in 0.44in !important;
         box-sizing: border-box !important;
       }
-      /* Ensure blue links remain clickable and cleanly visible in printed PDF */
+      /* Blue links remain clickable and cleanly visible in printed PDF */
       a.project-link {
         color: #0b5394 !important;
         text-decoration: underline !important;
@@ -365,7 +365,7 @@
     <div class="section-title">PROJECTS</div>
     <hr class="section-line" />
 
-    <!-- Project 1: DO -->
+    <!-- Project 1: DO (Blue Heading Link) -->
     <div class="entry">
       <div class="flex-row">
         <span>
@@ -381,7 +381,7 @@
       </ul>
     </div>
 
-    <!-- Project 2: AksharaDeepaTutor -->
+    <!-- Project 2: AksharaDeepaTutor (Blue Heading Link) -->
     <div class="entry">
       <div class="flex-row">
         <span>
@@ -397,11 +397,26 @@
       </ul>
     </div>
 
-    <!-- Project 3: AI Code Reviewer -->
+    <!-- Project 3: AI Resume Portfolio (Blue Heading Link) -->
     <div class="entry">
       <div class="flex-row">
         <span>
-          <a href="https://github.com/AKSHAYRBHAT-2004" target="_blank" rel="noopener" class="project-link" title="Click to view repository">AI Code Reviewer</a>
+          <a href="https://akshayrbhat-2004.github.io/portfolio/" target="_blank" rel="noopener" class="project-link" title="Click to open live AI Resume Portfolio">AI Resume Portfolio</a>
+          <span class="project-desc"> | Generative AI Web Platform, Tailwind CSS, Lucide</span>
+        </span>
+        <span class="regular-meta">2026</span>
+      </div>
+      <ul>
+        <li>Architected and launched an interactive developer portfolio featuring a live Recruiter Copilot (AI Terminal) for real-time profile queries.</li>
+        <li>Engineered dynamic mouse spotlight lighting, categorical project filtering, and automated 1-page ATS resume generation.</li>
+      </ul>
+    </div>
+
+    <!-- Project 4: AI Code Reviewer (Normal Black Heading - No Blue Link) -->
+    <div class="entry">
+      <div class="flex-row">
+        <span>
+          <span class="bold-title">AI Code Reviewer</span>
           <span class="project-desc"> | MERN Stack, Google Gemini API</span>
         </span>
         <span class="regular-meta">2025</span>
