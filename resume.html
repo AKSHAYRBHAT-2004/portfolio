@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akshay R Bhat — Resume (AI & Mobile Systems Engineer)</title>
+  <meta name="description" content="Resume of Akshay R Bhat - Generative AI & Mobile Systems Engineer specialized in Kotlin, Jetpack Compose, React Native, and LLMs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f172a;
+      --secondary: #2563eb;
+      --text: #1e293b;
+      --text-muted: #475569;
+      --border: #cbd5e1;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
+      line-height: 1.45;
+      font-size: 13.5px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Action bar on top for browser view */
+    .action-bar {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .action-bar .brand {
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .action-bar .badge {
+      background: #10b981;
+      color: #064e3b;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+    }
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: #2563eb;
+      color: #ffffff;
+      border: 1px solid #1d4ed8;
+    }
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      color: #e2e8f0;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.2);
+      color: #ffffff;
+    }
+
+    /* Resume Document Container */
+    .resume-wrapper {
+      max-width: 850px;
+      margin: 32px auto;
+      background: var(--card-bg);
+      padding: 42px 48px;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: 26px;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .tagline {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--secondary);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+    .contact-info a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .contact-info a:hover {
+      color: var(--secondary);
+      text-decoration: underline;
+    }
+    .separator {
+      color: #94a3b8;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 15px;
+    }
+    h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 3px;
+      margin-bottom: 9px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    /* Experience & Projects items */
+    .entry {
+      margin-bottom: 11px;
+    }
+    .entry:last-child {
+      margin-bottom: 0;
+    }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+    .entry-title {
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--primary);
+    }
+    .entry-subtitle {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .entry-meta {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .tech-tagline {
+      font-size: 12px;
+      color: #4338ca;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    /* Bullet lists */
+    ul {
+      list-style-type: disc;
+      margin-left: 18px;
+      margin-top: 3px;
+    }
+    li {
+      margin-bottom: 3px;
+      color: #334155;
+      font-size: 12.8px;
+      line-height: 1.42;
+    }
+    li strong {
+      color: #0f172a;
+    }
+
+    /* Skills Grid */
+    .skills-table {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12.8px;
+    }
+    .skill-row {
+      display: flex;
+      gap: 8px;
+    }
+    .skill-category {
+      font-weight: 700;
+      min-width: 155px;
+      color: var(--primary);
+    }
+    .skill-list {
+      color: #334155;
+      flex: 1;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: #ffffff;
+        font-size: 11pt;
+        color: #000000;
+      }
+      .action-bar {
+        display: none !important;
+      }
+      .resume-wrapper {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+      }
+      a {
+        color: #000000 !important;
+        text-decoration: none !important;
+      }
+      h2 {
+        border-bottom-color: #000000;
+        color: #000000;
+      }
+      .tagline {
+        color: #2563eb !important;
+      }
+      @page {
+        margin: 12mm 15mm;
+        size: A4 portrait;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Actions Bar (Hidden when printed) -->
+  <div class="action-bar">
+    <div class="brand">
+      <span>📄 Akshay R Bhat — Resume</span>
+      <span class="badge">ATS-Friendly</span>
+    </div>
+    <div class="action-buttons">
+      <a href="index.html" class="btn btn-secondary">
+        ← Back to Interactive Portfolio
+      </a>
+      <button onclick="window.print()" class="btn btn-primary">
+        🖨️ Print / Save to PDF (Ctrl+P)
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Resume Content -->
+  <main class="resume-wrapper">
+    <!-- Header -->
+    <header>
+      <h1>AKSHAY R BHAT</h1>
+      <div class="tagline">Generative AI & Mobile Systems Engineer</div>
+      <div class="contact-info">
+        <span>📍 Udupi, Karnataka, India</span>
+        <span class="separator">•</span>
+        <a href="tel:+917975607946">📞 +91-7975607946</a>
+        <span class="separator">•</span>
+        <a href="mailto:akshayrbhat25@gmail.com">✉️ akshayrbhat25@gmail.com</a>
+        <span class="separator">•</span>
+        <a href="https://linkedin.com/in/akshay-r-Bhat" target="_blank" rel="noopener">linkedin.com/in/akshay-r-Bhat</a>
+        <span class="separator">•</span>
+        <a href="https://github.com/AKSHAYRBHAT-2004" target="_blank" rel="noopener">github.com/AKSHAYRBHAT-2004</a>
+      </div>
+    </header>
+
+    <!-- Education -->
+    <section>
+      <h2>Education</h2>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Shri Madhwa Vadiraja Institute of Technology and Management</span>
+          <span class="entry-meta">Udupi, Karnataka</span>
+        </div>
+        <div class="entry-header">
+          <span class="entry-subtitle">Bachelor of Engineering in Computer Science</span>
+          <span class="entry-meta">Oct 2022 – May 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section>
+      <h2>Experience</h2>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">MindMatrix.io</span>
+          <span class="entry-meta">Bangalore, India (Online)</span>
+        </div>
+        <div class="entry-header">
+          <span class="entry-subtitle">Android App Development Intern – Generative AI</span>
+          <span class="entry-meta">Feb 2026 – May 2026</span>
+        </div>
+        <ul>
+          <li>Developed high-performance Android applications using <strong>Kotlin</strong>, <strong>Java</strong>, and <strong>Jetpack Compose</strong> adhering to modern clean architecture standards.</li>
+          <li>Researched and integrated Generative AI capabilities utilizing <strong>Google AI Studio</strong>, <strong>Google Cloud Labs</strong>, and <strong>Gemini API</strong> into mobile workflows.</li>
+          <li>Architected responsive UI/UX components, rapid feature prototypes, and modular screen flows with rigorous debugging and iterative performance tuning.</li>
+          <li>Integrated <strong>Firebase services</strong> (Authentication, Firestore, Realtime Database) for real-time data synchronization, cloud functions, and analytics.</li>
+          <li>Gained extensive hands-on experience in full Android development lifecycles, automated testing, and agile release practices.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section>
+      <h2>Featured Projects</h2>
+
+      <!-- Project 1: DO -->
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">DO — AI Life Operating System</span>
+          <span class="entry-meta">2026</span>
+        </div>
+        <div class="tech-tagline">
+          Technologies: React Native, Expo, React Native Web, Multimodal LLMs, Cascading Intent Engine | 
+          <a href="https://akshayrbhat-2004.github.io/do-app/" target="_blank" style="color:#2563eb; text-decoration: underline;">Live Demo</a>
+        </div>
+        <ul>
+          <li>Built an autonomous AI-powered life operator that transforms natural language, voice, and visual inputs into instant task execution.</li>
+          <li>Engineered a <strong>3-Tier Cascading Intent Engine</strong>: Tier 0 Regex (&lt;5ms latency), Tier 1 Semantic Routing (&lt;30ms), and Tier 2 LLM classification (&lt;250ms) for ultra-efficient command execution.</li>
+          <li>Implemented multimodal features: <strong>Snap &rarr; Solve</strong> (document and bill vision comprehension), <strong>Voice-First AI</strong>, and context-aware action triggers ("Trip in 30s", "Explain Like I'm Lazy", "Home Autopilot").</li>
+          <li>Published cross-platform web and mobile releases with responsive touch-optimized UI and zero-lag animations via Expo and React Native Web.</li>
+        </ul>
+      </div>
+
+      <!-- Project 2: AksharaDeepaTutor -->
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">AksharaDeepaTutor — Educational Language Learning Application</span>
+          <span class="entry-meta">2026</span>
+        </div>
+        <div class="tech-tagline">
+          Technologies: Kotlin, Jetpack Compose, Material Design 3, MVVM Architecture, Android SDK, TextToSpeech API | 
+          <a href="https://github.com/AKSHAYRBHAT-2004/AksharaDeepaTutor" target="_blank" style="color:#2563eb; text-decoration: underline;">GitHub Repo</a>
+        </div>
+        <ul>
+          <li>Developed a specialized Android educational app to assist young children in learning language fundamentals, phonetics, and reading literacy.</li>
+          <li>Integrated Android <strong>TextToSpeech (TTS) engine</strong> and interactive pronunciation assistance for real-time auditory learning and phoneme guidance.</li>
+          <li>Architected the system using <strong>MVVM with Kotlin StateFlow/Coroutines</strong>, ensuring responsive UI rendering and efficient background data handling.</li>
+          <li>Designed a clean, engaging interface with Jetpack Compose, featuring interactive learning modules, student performance tracking, and progress persistence.</li>
+        </ul>
+      </div>
+
+      <!-- Project 3: AI Code Reviewer -->
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">AI Code Reviewer — Automated Code Quality Platform</span>
+          <span class="entry-meta">2025</span>
+        </div>
+        <div class="tech-tagline">
+          Technologies: MERN Stack (MongoDB, Express.js, React.js, Node.js), Google Gemini API, REST APIs
+        </div>
+        <ul>
+          <li>Developed an AI-powered code review and vulnerability audit platform providing real-time static code analysis and feedback for developers.</li>
+          <li>Integrated <strong>Google Gemini API</strong> for semantic code comprehension, automated bug detection, refactoring tips, and security best practices.</li>
+          <li>Built a modern full-stack dashboard using React and Express to visualize code syntax trees, track reviewer metrics, and manage improvement logs.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Technical Skills -->
+    <section>
+      <h2>Technical Skills</h2>
+      <div class="skills-table">
+        <div class="skill-row">
+          <span class="skill-category">AI & Machine Learning:</span>
+          <span class="skill-list">Generative AI, Google Gemini API, Google AI Studio, Prompt Engineering, Cascading Intent Engines, Multimodal Pipelines, Text-to-Speech (TTS)</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Mobile Engineering:</span>
+          <span class="skill-list">Kotlin, Java, Jetpack Compose, Android SDK, Android Studio, React Native, Expo, MVVM Architecture, Material Design 3</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Programming Languages:</span>
+          <span class="skill-list">Java, Kotlin, Python, JavaScript (ES6+), C, SQL, HTML5, CSS3</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Web & Cloud:</span>
+          <span class="skill-list">MERN Stack (MongoDB, Express, React, Node.js), REST APIs, Firebase (Auth, Firestore, Realtime DB)</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Developer Tools:</span>
+          <span class="skill-list">Git, GitHub, VS Code, Android Studio, Gradle, Google Cloud Labs, Postman</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Soft Skills:</span>
+          <span class="skill-list">Problem Solving, Analytical Thinking, System Design Basics, Team Collaboration, Agile Mindset</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications & Training -->
+    <section>
+      <h2>Certifications & Training</h2>
+      <ul>
+        <li><strong>Android App Development using Generative AI Internship</strong> — MindMatrix.io & VTU Internship Program (2026)</li>
+        <li><strong>Programming for Everybody (Getting Started with Python)</strong> — University of Michigan, Coursera</li>
+        <li><strong>Infosys Certified JavaScript Course</strong> — Infosys Springboard</li>
+      </ul>
+    </section>
+  </main>
+
+</body>
+</html>
