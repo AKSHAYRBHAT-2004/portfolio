@@ -1,0 +1,173 @@
+%-------------------------
+% Akshay R Bhat - Resume (LaTeX Template)
+% Compatible with pdflatex / Overleaf
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{xcolor}
+
+\definecolor{linkblue}{RGB}{11,83,148}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,
+    filecolor=linkblue,      
+    urlcolor=linkblue,
+}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape AKSHAY R BHAT} \\ \vspace{2pt}
+    \small \href{tel:+917975607946}{+91-7975607946} $|$ 
+    \href{mailto:akshayrbhat25@gmail.com}{akshayrbhat25@gmail.com} $|$ 
+    \href{https://linkedin.com/in/akshay-r-Bhat}{linkedin.com/in/akshay-r-Bhat} $|$ 
+    \href{https://github.com/AKSHAYRBHAT-2004}{github.com/AKSHAYRBHAT-2004} \\
+    \small Udupi, Karnataka
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Shri Madhwa Vadiraja Institute of Technology and Management}{Udupi, Karnataka}
+      {Bachelor of Engineering in Computer Science}{October 2022 -- May 2026}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {MindMatrix.io}{Bangalore, India, Online}
+      {Android App Development Intern -- Generative AI}{Feb 2026 -- May 2026}
+      \resumeItemListStart
+        \resumeItem{Developed Android applications using Kotlin, Java, and Jetpack Compose with modern Android development practices.}
+        \resumeItem{Worked with Android Studio, Google Cloud Labs, and Google AI Studio to explore Generative AI capabilities in mobile applications.}
+        \resumeItem{Designed and implemented UI/UX components, application prototypes, and feature enhancements with debugging and iterative improvements.}
+        \resumeItem{Integrated Firebase services for backend support, testing, and real-time application functionalities.}
+        \resumeItem{Gained hands-on experience in Android development workflows, testing, and project-based application development.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\href{https://akshayrbhat-2004.github.io/do-app/}{\textbf{\color{linkblue}\underline{DO -- AI Life Operating System}}} $|$ \emph{React Native, Expo, LLMs, Cascading Intent Engine}}{2026}
+          \resumeItemListStart
+            \resumeItem{Engineered an AI-powered life operator transforming natural language, voice, and vision into automated task execution.}
+            \resumeItem{Architected a 3-Tier Cascading Intent Engine: Tier 0 Regex ($<$5ms), Tier 1 Semantic Routing ($<$30ms), and Tier 2 LLMs ($<$250ms).}
+            \resumeItem{Built multimodal interaction pipelines including Snap $\rightarrow$ Solve (bill/document vision OCR), Voice-First AI, and contextual automation.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\href{https://github.com/AKSHAYRBHAT-2004/AksharaDeepaTutor}{\textbf{\color{linkblue}\underline{AksharaDeepaTutor}}} $|$ \emph{Learning Management Application}}{2026}
+          \resumeItemListStart
+            \resumeItem{Developed an educational application using Kotlin and Java to support interactive learning and student management functionalities.}
+            \resumeItem{Designed and implemented user-friendly interfaces for course access, learning materials, and student engagement using Jetpack Compose.}
+            \resumeItem{Integrated native Text-to-Speech (TTS) API and secure authentication for real-time auditory pronunciation feedback and progress tracking.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\href{https://github.com/AKSHAYRBHAT-2004}{\textbf{\color{linkblue}\underline{AI Code Reviewer}}} $|$ \emph{MERN Stack, Google Gemini API}}{2025}
+          \resumeItemListStart
+            \resumeItem{Developed an AI-based code review platform providing real-time feedback, vulnerability alerts, and improvement suggestions.}
+            \resumeItem{Integrated Google Gemini API for advanced semantic code analysis, syntax error detection, and best practice recommendations.}
+            \resumeItem{Implemented a user-friendly dashboard with MERN stack to review, track, and improve code quality.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Programming Languages}{: Java, Python, C, JavaScript, HTML, CSS, SQL, Kotlin} \\
+     \textbf{AI \& Machine Learning}{: Generative AI, Google Gemini API, Google AI Studio, Prompt Engineering, Intent Engines} \\
+     \textbf{Mobile \& Web}{: Jetpack Compose, Android Studio, React Native, Expo, MERN Stack, MVVM} \\
+     \textbf{Databases}{: MongoDB, MySQL, Firebase (Auth, Firestore, Realtime DB)} \\
+     \textbf{Developer Tools}{: Git, GitHub, VS Code, Android Studio, Google Cloud Labs} \\
+     \textbf{Soft Skills}{: Problem Solving, Analytical Thinking, Adaptability, Team Collaboration}
+    }}
+ \end{itemize}
+
+%-----------CERTIFICATIONS & TRAINING-----------
+\section{Certifications \& Training}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     $\bullet$ Programming for Everybody - Python (University of Michigan, Coursera) \\
+     $\bullet$ Infosys Certified JavaScript Course (Infosys Springboard) \\
+     $\bullet$ Android App Development using Generative AI Internship (MindMatrix.io -- VTU Internship Program)
+    }}
+ \end{itemize}
+
+\end{document}
